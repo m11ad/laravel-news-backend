@@ -19,7 +19,7 @@ class NewsController extends Controller
     {
         $newsItems = NewsItem::with('category', 'tags')->get();
 
-        return view('news.index', compact('newsItems'));
+        return response()->json($newsItems);
     }
 
     /**
@@ -32,7 +32,10 @@ class NewsController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        return view('news.create', compact('categories', 'tags'));
+        return response()->json([
+            'categories' => $categories,
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -82,7 +85,9 @@ class NewsController extends Controller
         $newsItem->save();
         $newsItem->tags()->sync($data['tags']);
 
-        return redirect()->route('news.index');
+        return response()->json([
+            'message' => 'News item created successfully',
+        ]);
     }
 
     /**
@@ -95,7 +100,7 @@ class NewsController extends Controller
     {
         $newsItem->load(['category', 'tags']);
 
-        return view('news.show', compact('newsItem'));
+        return response()->json($newsItem);
     }
 
     /**
@@ -109,7 +114,11 @@ class NewsController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
 
-        return view('news.edit', compact('newsItem', 'categories', 'tags'));
+        return response()->json([
+            'newsItem' => $newsItem,
+            'categories' => $categories,
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -144,7 +153,7 @@ class NewsController extends Controller
         $newsItem->save();
         $newsItem->tags()->sync($data['tags']);
 
-        return redirect()->route('news.index');
+        return response()->json(['success' => true]);
     }
 
     /**
@@ -157,6 +166,6 @@ class NewsController extends Controller
     {
         $newsItem->delete();
 
-        return redirect()->route('news.index');
+        return response()->json(['success' => true]);
     }
 }
