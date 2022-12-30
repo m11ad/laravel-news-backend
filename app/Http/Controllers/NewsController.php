@@ -46,11 +46,29 @@ class NewsController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
+            //this validator will fullfill the conditions stated in the exam question
+
+
+            //title field is required and must not be longer than 255 characters
             'title' => 'required|max:255',
+
+            //the body field is required
             'body' => 'required',
+
+            //the category_id field is required and must be an existing category ID
             'category_id' => 'required|exists:categories,id',
+
+
+            /* Contains the string /article/ somewhere in it.
+            Does not contain the string /nl/article/ anywhere in it.
+            Does not contain a string of the form /[0-9]+/article/ anywhere in it. */
+
             'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
+
+            //tags field is an array
             'tags' => 'array',
+
+            // tag IDs that must all be existing tags
             'tags.*' => 'exists:tags,id',
         ]);
 
@@ -106,6 +124,8 @@ class NewsController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
+            //Same validation as the store() method 
+
             'title' => 'required|max:255',
             'body' => 'required',
             'category_id' => 'required|exists:categories,id',
