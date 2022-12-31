@@ -1,11 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class NewsItem extends Model
 {
+
     // Specify the table name for the model
     protected $table = 'news_items';
 

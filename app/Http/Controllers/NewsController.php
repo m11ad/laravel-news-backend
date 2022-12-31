@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\NewsItem;
-use App\Tag;
+use App\Models\Category;
+use App\Models\NewsItem;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
