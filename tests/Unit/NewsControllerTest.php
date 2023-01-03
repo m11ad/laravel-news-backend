@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 class NewsControllerTest extends TestCase
 {
-    use  RefreshDatabase, WithFaker;
+    use   WithFaker;
 
     public function testStore()
     {
