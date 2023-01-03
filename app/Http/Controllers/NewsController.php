@@ -22,21 +22,22 @@ class NewsController extends Controller
         return response()->json($newsItems);
     }
 
-    /**
-     * Show the form for creating a new news item.
+        /**
+     * Display the specified news item.
      *
+     * @param  \App\NewsItem  $newsItem
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $categories = Category::all();
-        $tags = Tag::all();
 
-        return response()->json([
-            'categories' => $categories,
-            'tags' => $tags,
-        ]);
+    public function show(NewsItem $newsItem)
+    {
+        $newsItem->load(['category', 'tags']);
+    
+        return response()->json($newsItem);
     }
+
+
+
 
     /**
      * Store a newly created news item in storage.
@@ -44,83 +45,77 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $data = $request->all();
+
+    //     $validator = Validator::make($data, [
+    //         //this validator will fullfill the conditions stated in the exam question
+
+
+    //         //title field is required and must not be longer than 255 characters
+    //         'title' => 'required|max:255',
+
+    //         //the body field is required
+    //         'body' => 'required',
+
+    //         //the category_id field is required and must be an existing category ID
+    //         'category_id' => 'required|exists:categories,id',
+
+
+    //         /* Contains the string /article/ somewhere in it.
+    //         Does not contain the string /nl/article/ anywhere in it.
+    //         Does not contain a string of the form /[0-9]+/article/ anywhere in it. */
+
+    //         'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
+
+    //         //tags field is an array
+    //         'tags' => 'array',
+
+    //         // tag IDs that must all be existing tags
+    //         'tags.*' => 'exists:tags,id',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return redirect()->back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
+
+    //     $newsItem = new NewsItem($data);
+    //     $newsItem->save();
+    //     $newsItem->tags()->sync($data['tags']);
+
+    //     return response()->json([
+    //         'message' => 'News item created successfully',
+    //     ]);
+    // }
+
+
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $validator = Validator::make($data, [
-            //this validator will fullfill the conditions stated in the exam question
-
-
-            //title field is required and must not be longer than 255 characters
-            'title' => 'required|max:255',
-
-            //the body field is required
+        $request->validate([
+            'title' => 'required',
             'body' => 'required',
-
-            //the category_id field is required and must be an existing category ID
-            'category_id' => 'required|exists:categories,id',
-
-
-            /* Contains the string /article/ somewhere in it.
-            Does not contain the string /nl/article/ anywhere in it.
-            Does not contain a string of the form /[0-9]+/article/ anywhere in it. */
-
-            'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
-
-            //tags field is an array
+            'category_id' => 'nullable|exists:categories,id',
             'tags' => 'array',
-
-            // tag IDs that must all be existing tags
-            'tags.*' => 'exists:tags,id',
+            'tags.*' => 'exists:tags,id'
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $newsItem = new NewsItem($data);
+    
+        $newsItem = new NewsItem;
+        $newsItem->title = $request->title;
+        $newsItem->body = $request->body;
+        $newsItem->category_id = $request->category_id;
+        $newsItem->url = $request->url;
         $newsItem->save();
-        $newsItem->tags()->sync($data['tags']);
+    
+        $newsItem->tags()->attach($request->tags);
+    
+        return response()->json($newsItem, 201);
 
-        return response()->json([
-            'message' => 'News item created successfully',
-        ]);
+
     }
-
-    /**
-     * Display the specified news item.
-     *
-     * @param  \App\NewsItem  $newsItem
-     * @return \Illuminate\Http\Response
-     */
-    public function show(NewsItem $newsItem)
-    {
-        $newsItem->load(['category', 'tags']);
-
-        return response()->json($newsItem);
-    }
-
-    /**
-     * Show the form for editing the specified news item.
-     *
-     * @param  \App\NewsItem  $newsItem
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(NewsItem $newsItem)
-    {
-        $categories = Category::all();
-        $tags = Tag::all();
-
-        return response()->json([
-            'newsItem' => $newsItem,
-            'categories' => $categories,
-            'tags' => $tags,
-        ]);
-    }
-
+    
     /**
      * Update the specified news item in storage.
      *
@@ -128,33 +123,45 @@ class NewsController extends Controller
      * @param  \App\NewsItem  $newsItem
      * @return \Illuminate\Http\Response
      */
+    // public function update(Request $request, NewsItem $newsItem)
+    // {
+    //     $data = $request->all();
+
+    //     $validator = Validator::make($data, [
+    //         //Same validation as the store() method 
+
+    //         'title' => 'required|max:255',
+    //         'body' => 'required',
+    //         'category_id' => 'required|exists:categories,id',
+    //         'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
+    //         'tags' => 'array',
+    //         'tags.*' => 'exists:tags,id',
+    //     ]);
+
+    //     if ($validator->fails()) {
+    //         return redirect()->back()
+    //             ->withErrors($validator)
+    //             ->withInput();
+    //     }
+
+    //     $newsItem->fill($data);
+    //     $newsItem->save();
+    //     $newsItem->tags()->sync($data['tags']);
+
+    //     return response()->json(['success' => true]);
+    // }
+
     public function update(Request $request, NewsItem $newsItem)
-    {
-        $data = $request->all();
+{
+    $newsItem->title = $request->title;
+    $newsItem->content = $request->content;
+    $newsItem->category_id = $request->category_id;
+    $newsItem->save();
 
-        $validator = Validator::make($data, [
-            //Same validation as the store() method 
-
-            'title' => 'required|max:255',
-            'body' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
-            'tags' => 'array',
-            'tags.*' => 'exists:tags,id',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $newsItem->fill($data);
-        $newsItem->save();
-        $newsItem->tags()->sync($data['tags']);
-
-        return response()->json(['success' => true]);
-    }
+    return response()->json([
+        'message' => 'News item updated successfully.'
+    ]);
+}
 
     /**
      * Remove the specified news item from storage.
