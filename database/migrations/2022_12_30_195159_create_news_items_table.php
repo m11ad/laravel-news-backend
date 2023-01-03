@@ -17,7 +17,8 @@ class CreateNewsItemsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->integer('category_id')->unsigned();
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->json('tags')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();
         });
