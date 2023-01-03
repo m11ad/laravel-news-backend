@@ -2,29 +2,42 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
+use App\Models\Tag;
 use App\Models\NewsItem;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class NewsControllerTest extends TestCase
 {
+    use  RefreshDatabase, WithFaker;
 
     public function testStore()
     {
-        // Given
-        $data = [
-            'title' => 'Test News Item',
-            'body' => 'This is the content of the test news item.',
-            'url' => 'http://example.com/test-news-item',
-        ];
+        // Create a new tag
+$tag = Tag::create([
+    'name' => 'Tag name'
+]);
 
-        // When
-        $response = $this->postJson(route('news.store'), $data);
-        // Then
-        $response->assertStatus(201);
-        $this->assertDatabaseHas('news_items', [
-            'title' => 'Test News Item',
-            'body' => 'This is the content of the test news item.',
-            'url' => 'http://example.com/test-news-item',
+// Create a new category
+$category = Category::create([
+    'name' => 'Category name'
+]);
+
+// Use the created data to test the store method
+$response = $this->postJson('/api/news', [
+    'title' => 'News title Test',
+    'body' => 'News body',
+    'category_id' => $category->id,
+    'url' => 'http://example.com/article/123',
+    'tags' => [$tag->id]
+]);
+
+$response
+    ->assertStatus(201)
+    ->assertJson([
+        'message' => 'News item created successfully'
         ]);
     }
 }
