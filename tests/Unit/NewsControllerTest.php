@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
+
+// To test all the CRUD functions in the NewsConroller.php
 class NewsControllerTest extends TestCase
 {
     use   WithFaker;
