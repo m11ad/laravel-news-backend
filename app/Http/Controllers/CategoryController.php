@@ -33,6 +33,23 @@ class CategoryController extends Controller
             'category' => $category
         ], 200);
     }
+
+    public function store(Request $request)
+{
+    $data = $request->validate([
+        'name' => 'required|unique:categories|max:255',
+        'description' => 'nullable|max:255',
+    ]);
+
+    $category = new Category($data);
+    $category->save();
+
+    return response()->json([
+        'message' => 'Category created successfully',
+        'data' => $category,
+    ], 201);
+}
+
     
     public function update(Request $request, $id)
     {
