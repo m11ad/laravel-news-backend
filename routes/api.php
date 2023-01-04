@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index')->middleware('cache.headers');
 Route::get('/news/{newsItem}', 'App\Http\Controllers\NewsController@show')->name('news.show')->middleware('cache.headers');
-Route::get('/categories/{id}', 'App\Http\Controllers\CategoryController@index')->name('categories.index')->middleware('cache.headers');
+Route::get('/categories/', 'App\Http\Controllers\CategoryController@index')->name('categories.index')->middleware('cache.headers');
 Route::get('/categories/{id}', 'App\Http\Controllers\CategoryController@show')->name('categories.show')->middleware('cache.headers');
 Route::post('/news', 'App\Http\Controllers\NewsController@store')->name('news.store');
 Route::patch('/news/{newsItem}', 'App\Http\Controllers\NewsController@update')->name('news.update');
