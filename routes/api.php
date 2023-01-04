@@ -20,9 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// Route::apiResource('news', 'App\Http\Controllers\NewsController');
-Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index');
-Route::get('/news/{newsItem}', 'App\Http\Controllers\NewsController@show')->name('news.show');
+Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index')->middleware('cache.headers:1');
+Route::get('/news/{newsItem}', 'App\Http\Controllers\NewsController@show')->name('news.show')->middleware('cache.headers:1');
 Route::post('/news', 'App\Http\Controllers\NewsController@store')->name('news.store');
 Route::patch('/news/{newsItem}', 'App\Http\Controllers\NewsController@update')->name('news.update');
 Route::delete('/news/{newsItem}', 'App\Http\Controllers\NewsController@destroy')->name('news.destroy');
