@@ -24,16 +24,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Simply Remove ->middleware('cache.headers'); if you don't want it do be 1
 
 
+//News Routes
 Route::get('/news', 'App\Http\Controllers\NewsController@index')->name('news.index')->middleware('cache.headers');
 Route::get('/news/{newsItem}', 'App\Http\Controllers\NewsController@show')->name('news.show')->middleware('cache.headers');
 Route::post('/news', 'App\Http\Controllers\NewsController@store')->name('news.store');
 Route::patch('/news/{newsItem}', 'App\Http\Controllers\NewsController@update')->name('news.update');
 Route::delete('/news/{newsItem}', 'App\Http\Controllers\NewsController@destroy')->name('news.destroy');
 
-
+//Category Routes
 Route::get('/categories', 'App\Http\Controllers\CategoryController@index')->name('categories.index')->middleware('cache.headers');
 Route::get('/categories/{categoryId}', 'App\Http\Controllers\CategoryController@show')->name('categories.show')->middleware('cache.headers');
 Route::post('/categories', 'App\Http\Controllers\CategoryController@store')->name('categories.store');
 Route::patch('/categories/{categoryId}', 'App\Http\Controllers\CategoryController@update')->name('categories.update');
 Route::delete('/categories/{categoryId}', 'App\Http\Controllers\CategoryController@destroy')->name('categories.destroy');
 
+
+//Tag Routes
+Route::get('/tags', 'App\Http\Controllers\TagController@index')->name('tags.index')->middleware('cache.headers');
+Route::get('/tags/{tagId}', 'App\Http\Controllers\TagController@show')->name('tags.show')->middleware('cache.headers');
+Route::post('/tags', 'App\Http\Controllers\TagController@store')->name('tags.store');
+Route::patch('/tags/{tagId}', 'App\Http\Controllers\TagController@update')->name('tags.update');
+Route::delete('/tags/{tagId}', 'App\Http\Controllers\TagController@destroy')->name('tags.destroy');
