@@ -18,8 +18,8 @@ class CacheHeaders
     {
         $response = $next($request);
 
-        // Set the "X-Active-Custom-Cache" header with the value specified in the middleware
-        $response->headers->set('X-Active-Custom-Cache', $request->route()->parameter('cache_value'));
+    // Set the X-Active-Custom-Cache header to the value of "1"
+    $response->header('X-Active-Custom-Cache', '1');
 
         return $response;
     }
