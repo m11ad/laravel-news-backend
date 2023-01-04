@@ -8,6 +8,14 @@ use App\Models\NewsItem;
 
 class CategoryController extends Controller
 {
+
+    public function index()
+    {
+        $categories = Category::all();
+
+        return response()->json($categories);
+    }
+
     public function show($id)
     {
         $category = Category::find($id);
