@@ -139,6 +139,6 @@ class NewsController extends Controller
     {
         $newsItem->delete();
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true], 204);
     }
 }

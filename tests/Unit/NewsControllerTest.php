@@ -13,7 +13,7 @@ class NewsControllerTest extends TestCase
 {
     use   WithFaker;
 
-    public function test_store_news_item()
+    public function testStoreNewsItem()
     {
         // Create a new tag
         $tag = Tag::create([
@@ -41,7 +41,7 @@ class NewsControllerTest extends TestCase
         ]);
     }
 
-    public function test_update_news_item()
+    public function testUpdateNewsItem()
     {
         // Create a news item and a tag
         $newsItem = NewsItem::create([
@@ -72,5 +72,33 @@ class NewsControllerTest extends TestCase
             'success' => true,
         ]);
     }
+
+
+    public function testDestroyNewsItem()
+    {
+        // Create a news item in the database
+        $newsItem = new NewsItem;
+        $newsItem->title = 'Going to be deleted News title';
+        $newsItem->body = 'Goiing to be deleted News body';
+        $newsItem->category_id = 1;
+        $newsItem->url = 'http://example.com/article/123';
+        $newsItem->save();
+
+        // Send a DELETE request to the destroy method
+        $response = $this->delete('/api/news/' . $newsItem->id);
+
+        // Assert that the response status code is 204 (No Content)
+        $response->assertStatus(204);
+
+        // Assert that the news item has been deleted from the database
+        $this->assertDatabaseMissing('news_items', [
+            'id' => $newsItem->id,
+            'title' => 'Going to be deleted News title',
+            'body' => 'Going to be deleted News body',
+            'category_id' => 1,
+            'url' => 'http://example.com/article/123',
+        ]);
+    }
+
 }
 
