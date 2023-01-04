@@ -22,6 +22,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::find($id);
+        $news = NewsItem::where('category_id', $id)->get();
     
         if (!$category) {
             return response()->json([
@@ -30,9 +31,11 @@ class CategoryController extends Controller
         }
     
         return response()->json([
-            'category' => $category
+            'category' => $category,
+            'news' => $news,
         ], 200);
     }
+    
 
     public function store(Request $request)
 {

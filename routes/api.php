@@ -32,8 +32,8 @@ Route::delete('/news/{newsItem}', 'App\Http\Controllers\NewsController@destroy')
 
 
 Route::get('/categories', 'App\Http\Controllers\CategoryController@index')->name('categories.index')->middleware('cache.headers');
-Route::get('/categories/{id}', 'App\Http\Controllers\CategoryController@show')->name('categories.show')->middleware('cache.headers');
+Route::get('/categories/{categoryId}', 'App\Http\Controllers\CategoryController@show')->name('categories.show')->middleware('cache.headers');
 Route::post('/categories', 'App\Http\Controllers\CategoryController@store')->name('categories.store');
-Route::patch('/categories/{id}', 'App\Http\Controllers\CategoryController@update')->name('categories.update');
-Route::delete('/categories/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('categories.destroy');
+Route::patch('/categories/{categoryId}', 'App\Http\Controllers\CategoryController@update')->name('categories.update');
+Route::delete('/categories/{categoryId}', 'App\Http\Controllers\CategoryController@destroy')->name('categories.destroy');
 
