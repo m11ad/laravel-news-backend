@@ -1,82 +1,37 @@
 
-# Laravel News Backend
+# React News Front-End
 
-This is the backend for the Laravel News Dashboard application. It is a RESTful API built using the Laravel framework that provides CRUD functionality for news items, categories, and tags.
+This is a React app that allows users to browse and view news articles from various categories.
+
+## Prerequisites
+
+Before running this application, make sure you have the following installed on your machine:
+
+-   Node.js
+-   npm
+
+## Getting Started
+
+1.  Clone this repository to your local machine
+2.  Navigate to the root directory of the project and install the necessary dependencies by running `npm install`
+3.  Start the development server by running `npm start`
+4.  The app will be available at `http://localhost:3000` in your browser
 
 ## Features
 
--   Users can create, read, update, and delete news items, categories, and tags.
--   News items are associated with a category and can have multiple tags.
--   Validation is implemented for all fields, including external URLs that must follow certain rules (e.g. contain "/article/", not come after "/nl/", etc.).
--   A JSON API is exposed to allow the front-end to retrieve lists and details of news items.
--   Some routes have a header parameter called "X-Active-Custom-Cache" with a value of "1" that can be easily changed in the code.
+-   View a list of all news articles
+-   Filter news articles by category
+-   View the details of a specific news article
 
-## Requirements
+## Built With
 
--   PHP 7.4+
--   Laravel 8+
+-   [React](https://reactjs.org/) - A JavaScript library for building user interfaces
+-   [React Router](https://reactrouter.com/) - A routing library for React apps
+-   [Axios](https://github.com/axios/axios) - A library for making HTTP requests
 
-## Installation
+## Backend API
 
-1.  Clone the repository and navigate to the project directory:
-
-`git clone https://github.com/m11ad/grutto-news.git`
-`cd grutto-news`
-
-2.  Install dependencies:
-
-`composer install` 
-
-3.  Create a copy of the `.env.example` file and rename it to `.env`:
-
-`cp .env.example .env` 
-
-4.  Generate an app key:
-
-`php artisan key:generate` 
-
-5.  Set up your database connection in the `.env` file.
-    
-6.  Migrate the database:
-    
-
-`php artisan migrate` 
-
-7.  Seed the database with sample data (optional):
-
-`php artisan db:seed` 
-
-8.  Start the development server:
-
-`php artisan serve` 
-
-The API will be available at `http://localhost:8000`.
-
-
-## Endpoints
-
-### News
-
--   `GET /api/news`: Returns a list of all news items.
--   `GET /api/news/{id}`: Returns the details of a specific news item.
--   `POST /api/news`: Creates a new news item.
--   `PATCH /api/news/{id}`: Updates an existing news item.
--   `DELETE /api/news/{id}`: Deletes an existing news item.
-
-### Categories
-
--   `GET /api/categories`: Returns a list of all categories.
--   `GET /api/categories/{id}`: Returns the details of a specific category.
--   `POST /api/categories`: Creates a new category.
--   `PATCH /api/categories/{id}`: Updates an existing category.
--  `DELETE /api/categories/{id}`: Deletes an existing category.
-### Tags
-
--   `GET /api/tags`: Returns a list of all tags.
--   `GET /api/tags/{id}`: Returns the details of a specific tag.
--   `POST /api/tags`: Creates a new tag.
--   `PATCH /api/tags/{id}`: Updates an existing tag.
--   `DELETE /api/tags/{id}`: Deletes an existing tag.
+This front-end was built specifically for the News API built with Laravel. In order for this application to function properly, the API must be running and accessible at [http://localhost:8000](http://localhost:8000). The source code for the API can be found in the [laravel-news-backend](https://github.com/m11ad/laravel-news-dashboard) repository.
 
 
 ## Author
