@@ -1,5 +1,5 @@
 
-# Laravel News Dashboard
+# Laravel News Backend
 
 This is the backend for the Laravel News Dashboard application. It is a RESTful API built using the Laravel framework that provides CRUD functionality for news items, categories, and tags.
 
