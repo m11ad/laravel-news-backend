@@ -42,7 +42,7 @@ This is the backend for the Laravel News Dashboard application. It is a RESTful 
 
 `php artisan migrate` 
 
-7.  Test the endpoints and generate some sample data; Note that you should run it twice so that the   ✓ update news item would be succusful (optional):
+7.  (optional) Test the endpoints and generate some sample data; Note that you should run it twice so that the  ✓ update news item would be successful :
 
 `php artisan test` 
 
