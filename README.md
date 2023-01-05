@@ -1,5 +1,5 @@
 
-# Laravel News Dashboard
+# Laravel News Backend
 
 This is the backend for the Laravel News Dashboard application. It is a RESTful API built using the Laravel framework that provides CRUD functionality for news items, categories, and tags.
 
@@ -20,8 +20,8 @@ This is the backend for the Laravel News Dashboard application. It is a RESTful 
 
 1.  Clone the repository and navigate to the project directory:
 
-`git clone https://github.com/m11ad/grutto-news.git`
-`cd grutto-news`
+`git clone https://github.com/m11ad/laravel-news-backend.git`
+`cd laravel-news-backend`
 
 2.  Install dependencies:
 
