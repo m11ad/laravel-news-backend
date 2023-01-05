@@ -48,9 +48,14 @@ class TagController extends Controller
             ], 404);
         }
     
-        return response()->json($tag);
-    }
+        $newsItems = $tag->newsItems()->get();
     
+        return response()->json([
+            'tag' => $tag,
+            'news_items' => $newsItems,
+        ]);
+    }
+        
 
     /**
      * Update the specified resource in storage.
