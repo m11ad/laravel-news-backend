@@ -20,9 +20,8 @@ This is the backend for the Laravel News Dashboard application. It is a RESTful 
 
 1.  Clone the repository and navigate to the project directory:
 
-`git clone https://github.com/m11ad/laravel-news-dashboard.git`
-
-`cd laravel-news-dashboard`
+`git clone https://github.com/m11ad/grutto-news.git`
+`cd grutto-news`
 
 2.  Install dependencies:
 
@@ -78,3 +77,8 @@ The API will be available at `http://localhost:8000`.
 -   `POST /api/tags`: Creates a new tag.
 -   `PATCH /api/tags/{id}`: Updates an existing tag.
 -   `DELETE /api/tags/{id}`: Deletes an existing tag.
+
+
+## Author
+
+-   **Milad Yekleh** - _Full Stack Developer_ - [milad.space](https://milad.space) 
