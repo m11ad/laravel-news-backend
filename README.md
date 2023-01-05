@@ -20,8 +20,8 @@ This is the backend for the Laravel News Dashboard application. It is a RESTful 
 
 1.  Clone the repository and navigate to the project directory:
 
-`git clone https://github.com/[YOUR_USERNAME]/laravel-news-dashboard-backend.git
-cd laravel-news-dashboard-backend` 
+`git clone https://github.com/m11ad/grutto-news.git`
+`cd grutto-news`
 
 2.  Install dependencies:
 
