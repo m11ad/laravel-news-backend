@@ -49,7 +49,7 @@ This is the backend for the Laravel News Dashboard application. It is a RESTful 
 
 The API will be available at `http://localhost:8000`.
 
-8.  (optional) Test the endpoints and generate some sample data; Note that you should run it twice so that the  ✓ update news item would be successful. Now that the API is running You can also test and POST JSON payloads with [Postman](https://postman.com)  :
+8.  (optional) Test the endpoints and generate some sample data; Note that you should run the following command twice so that the  ✓ update news item would be successful. Now that the API is running You can also test and POST JSON payloads with [Postman](https://postman.com)  :
 
 `php artisan test` 
 
