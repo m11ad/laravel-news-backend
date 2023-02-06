@@ -114,7 +114,7 @@ class NewsController extends Controller
             'title' => 'required|max:255',
             'body' => 'required',
             'category_id' => 'required|exists:categories,id',
-            'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
+            'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/article\/[0-9]+.*/',
             'tags' => 'array',
             'tags.*' => 'exists:tags,id',
         ]);
