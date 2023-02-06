@@ -1,5 +1,5 @@
 
-# Laravel News Dashboard
+# Laravel News Backend
 
 This is the backend for the Laravel News Dashboard application. It is a RESTful API built using the Laravel framework that provides CRUD functionality for news items, categories, and tags.
 
@@ -20,8 +20,8 @@ This is the backend for the Laravel News Dashboard application. It is a RESTful 
 
 1.  Clone the repository and navigate to the project directory:
 
-`git clone https://github.com/[YOUR_USERNAME]/laravel-news-dashboard-backend.git
-cd laravel-news-dashboard-backend` 
+`git clone https://github.com/m11ad/laravel-news-backend.git`
+`cd laravel-news-backend`
 
 2.  Install dependencies:
 
@@ -42,15 +42,16 @@ cd laravel-news-dashboard-backend`
 
 `php artisan migrate` 
 
-7.  Seed the database with sample data (optional):
 
-`php artisan db:seed` 
-
-8.  Start the development server:
+7.  Start the development server:
 
 `php artisan serve` 
 
 The API will be available at `http://localhost:8000`.
+
+8.  (optional) Test the endpoints and generate some sample data; Note that you should run the following command twice so that the  ✓ update news item would be successful. Now that the API is running You can also test and POST JSON payloads with [Postman](https://postman.com)  :
+
+`php artisan test` 
 
 
 ## Endpoints
@@ -77,3 +78,6 @@ The API will be available at `http://localhost:8000`.
 -   `POST /api/tags`: Creates a new tag.
 -   `PATCH /api/tags/{id}`: Updates an existing tag.
 -   `DELETE /api/tags/{id}`: Deletes an existing tag.
+## Author
+
+-   **Milad Yekleh** - _Full Stack Developer_ - [milad.space](https://milad.space) 
