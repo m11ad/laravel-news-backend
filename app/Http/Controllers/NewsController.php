@@ -68,7 +68,9 @@ class NewsController extends Controller
             Does not contain the string /nl/article/ anywhere in it.
             Does not contain a string of the form /[0-9]+/article/ anywhere in it. */
 
-            'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/[0-9]+\/article\/.*/',
+            'url' => 'required|url|regex:/\/article\/.*/|not_regex:/\/nl\/article\/.*/|not_regex:/\/article\/[0-9]+.*/',
+
+
 
             //tags field is an array
             'tags' => 'array',
@@ -118,7 +120,8 @@ class NewsController extends Controller
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator)
-                ->withInput();
+                ->withInput()
+                ->setStatusCode(400);
         }
 
         $newsItem->fill($data);
